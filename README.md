@@ -1,2 +1,2 @@
 # OpenGL-Project
- An OpenGL scence with various graphic features
+ An OpenGL scence with various graphical features
