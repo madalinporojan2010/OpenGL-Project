@@ -1,44 +1,14 @@
 ﻿  Camera.cpp
   main.cpp
   Mesh.cpp
-C:\Users\Madalin\Documents\GitHub\OpenGL-Project\Mesh.cpp(32,72): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\Madalin\Documents\GitHub\OpenGL-Project\src\Mesh.cpp(32,72): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   Model3D.cpp
-C:\Users\Madalin\Documents\GitHub\OpenGL-Project\Model3D.cpp(89,40): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Users\Madalin\Documents\GitHub\OpenGL-Project\src\Model3D.cpp(89,40): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
           with
           [
               _Ty=GLuint
           ]
-C:\Users\Madalin\Documents\GitHub\OpenGL-Project\Model3D.cpp(97,46): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Shader.cpp
-  stb_image.cpp
-  tiny_obj_loader.cpp
+C:\Users\Madalin\Documents\GitHub\OpenGL-Project\src\Model3D.cpp(97,46): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Window.cpp
   Generating Code...
-LINK : warning LNK4217: symbol '__glewActiveTexture' defined in 'libglew32d.lib(glew.obj)' is imported by 'Mesh.obj' in function '"public: void __cdecl gps::Mesh::Draw(class gps::Shader)" (?Draw@Mesh@gps@@QEAAXVShader@2@@Z)'
-LINK : warning LNK4217: symbol '__glewBindBuffer' defined in 'libglew32d.lib(glew.obj)' is imported by 'Mesh.obj' in function '"private: void __cdecl gps::Mesh::setupMesh(void)" (?setupMesh@Mesh@gps@@AEAAXXZ)'
-LINK : warning LNK4217: symbol '__glewBufferData' defined in 'libglew32d.lib(glew.obj)' is imported by 'Mesh.obj' in function '"private: void __cdecl gps::Mesh::setupMesh(void)" (?setupMesh@Mesh@gps@@AEAAXXZ)'
-LINK : warning LNK4217: symbol '__glewGenBuffers' defined in 'libglew32d.lib(glew.obj)' is imported by 'Mesh.obj' in function '"private: void __cdecl gps::Mesh::setupMesh(void)" (?setupMesh@Mesh@gps@@AEAAXXZ)'
-LINK : warning LNK4217: symbol '__glewEnableVertexAttribArray' defined in 'libglew32d.lib(glew.obj)' is imported by 'Mesh.obj' in function '"private: void __cdecl gps::Mesh::setupMesh(void)" (?setupMesh@Mesh@gps@@AEAAXXZ)'
-LINK : warning LNK4217: symbol '__glewGetUniformLocation' defined in 'libglew32d.lib(glew.obj)' is imported by 'Mesh.obj' in function '"public: void __cdecl gps::Mesh::Draw(class gps::Shader)" (?Draw@Mesh@gps@@QEAAXVShader@2@@Z)'
-LINK : warning LNK4217: symbol '__glewUniform1i' defined in 'libglew32d.lib(glew.obj)' is imported by 'Mesh.obj' in function '"public: void __cdecl gps::Mesh::Draw(class gps::Shader)" (?Draw@Mesh@gps@@QEAAXVShader@2@@Z)'
-LINK : warning LNK4217: symbol '__glewVertexAttribPointer' defined in 'libglew32d.lib(glew.obj)' is imported by 'Mesh.obj' in function '"private: void __cdecl gps::Mesh::setupMesh(void)" (?setupMesh@Mesh@gps@@AEAAXXZ)'
-LINK : warning LNK4217: symbol '__glewBindVertexArray' defined in 'libglew32d.lib(glew.obj)' is imported by 'Mesh.obj' in function '"public: void __cdecl gps::Mesh::Draw(class gps::Shader)" (?Draw@Mesh@gps@@QEAAXVShader@2@@Z)'
-LINK : warning LNK4217: symbol '__glewGenVertexArrays' defined in 'libglew32d.lib(glew.obj)' is imported by 'Mesh.obj' in function '"private: void __cdecl gps::Mesh::setupMesh(void)" (?setupMesh@Mesh@gps@@AEAAXXZ)'
-LINK : warning LNK4217: symbol '__glewDeleteBuffers' defined in 'libglew32d.lib(glew.obj)' is imported by 'Model3D.obj' in function '"public: __cdecl gps::Model3D::~Model3D(void)" (??1Model3D@gps@@QEAA@XZ)'
-LINK : warning LNK4217: symbol '__glewGenerateMipmap' defined in 'libglew32d.lib(glew.obj)' is imported by 'Model3D.obj' in function '"private: unsigned int __cdecl gps::Model3D::ReadTextureFromFile(char const *)" (?ReadTextureFromFile@Model3D@gps@@AEAAIPEBD@Z)'
-LINK : warning LNK4217: symbol '__glewDeleteVertexArrays' defined in 'libglew32d.lib(glew.obj)' is imported by 'Model3D.obj' in function '"public: __cdecl gps::Model3D::~Model3D(void)" (??1Model3D@gps@@QEAA@XZ)'
-LINK : warning LNK4217: symbol '__glewAttachShader' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"public: void __cdecl gps::Shader::loadShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?loadShader@Shader@gps@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)'
-LINK : warning LNK4217: symbol '__glewCompileShader' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"public: void __cdecl gps::Shader::loadShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?loadShader@Shader@gps@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)'
-LINK : warning LNK4217: symbol '__glewCreateProgram' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"public: void __cdecl gps::Shader::loadShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?loadShader@Shader@gps@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)'
-LINK : warning LNK4217: symbol '__glewCreateShader' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"public: void __cdecl gps::Shader::loadShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?loadShader@Shader@gps@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)'
-LINK : warning LNK4217: symbol '__glewDeleteShader' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"public: void __cdecl gps::Shader::loadShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?loadShader@Shader@gps@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)'
-LINK : warning LNK4217: symbol '__glewGetProgramInfoLog' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"private: void __cdecl gps::Shader::shaderLinkLog(unsigned int)" (?shaderLinkLog@Shader@gps@@AEAAXI@Z)'
-LINK : warning LNK4217: symbol '__glewGetProgramiv' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"private: void __cdecl gps::Shader::shaderLinkLog(unsigned int)" (?shaderLinkLog@Shader@gps@@AEAAXI@Z)'
-LINK : warning LNK4217: symbol '__glewGetShaderInfoLog' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"private: void __cdecl gps::Shader::shaderCompileLog(unsigned int)" (?shaderCompileLog@Shader@gps@@AEAAXI@Z)'
-LINK : warning LNK4217: symbol '__glewGetShaderiv' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"private: void __cdecl gps::Shader::shaderCompileLog(unsigned int)" (?shaderCompileLog@Shader@gps@@AEAAXI@Z)'
-LINK : warning LNK4217: symbol '__glewLinkProgram' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"public: void __cdecl gps::Shader::loadShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?loadShader@Shader@gps@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)'
-LINK : warning LNK4217: symbol '__glewShaderSource' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"public: void __cdecl gps::Shader::loadShader(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?loadShader@Shader@gps@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)'
-LINK : warning LNK4217: symbol '__glewUseProgram' defined in 'libglew32d.lib(glew.obj)' is imported by 'Shader.obj' in function '"public: void __cdecl gps::Shader::useShaderProgram(void)" (?useShaderProgram@Shader@gps@@QEAAXXZ)'
-LINK : warning LNK4217: symbol 'glewInit' defined in 'libglew32d.lib(glew.obj)' is imported by 'Window.obj' in function '"public: void __cdecl gps::Window::Create(int,int,char const *)" (?Create@Window@gps@@QEAAXHHPEBD@Z)'
-LINK : warning LNK4217: symbol 'glewExperimental' defined in 'libglew32d.lib(glew.obj)' is imported by 'Window.obj' in function '"public: void __cdecl gps::Window::Create(int,int,char const *)" (?Create@Window@gps@@QEAAXHHPEBD@Z)'
   OpenGL-Project.vcxproj -> C:\Users\Madalin\Documents\GitHub\OpenGL-Project\x64\Debug\OpenGL-Project.exe
