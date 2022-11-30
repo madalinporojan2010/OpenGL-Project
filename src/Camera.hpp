@@ -3,6 +3,7 @@
 
 #include "glm/glm.hpp"
 #include "glm/gtx/transform.hpp"
+#include "glm/gtx/euler_angles.hpp"
 
 #include <string>
 
@@ -30,6 +31,8 @@ namespace gps {
         glm::vec3 cameraFrontDirection;
         glm::vec3 cameraRightDirection;
         glm::vec3 cameraUpDirection;
+        glm::vec3 originalCameraFront;
+        glm::vec3 originalCameraUp;
     };
     
 }

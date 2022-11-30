@@ -105,9 +105,41 @@ void keyboardCallback(GLFWwindow* window, int key, int scancode, int action, int
     }
 }
 
+float lastX, lastY;
+float yaw = -90.0f, pitch = 0.0f;
+bool firstMouse = true;
+
 void mouseCallback(GLFWwindow* window, double xpos, double ypos) {
-    //TODO
+
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float Xoffset = xpos - lastX, Yoffset = lastY - ypos;
+
+    const float sentitivity = 0.1f;
+    Xoffset *= sentitivity;
+    Yoffset *= sentitivity;
+    lastX = xpos;
+    lastY = ypos;
+
+    yaw += Xoffset;
+    pitch += Yoffset;
+
+    if (pitch > 89.0f) {
+        pitch = 89.0f;
+    }
+    if (pitch < -89.0f) {
+        pitch = -89.0f;
+    }
+    // converted x sin yaw to cos (switched with z) and added - to z cos
+    myCamera.rotate(pitch, yaw);
+
 }
+
 
 void processMovement() {
 	if (pressedKeys[GLFW_KEY_W]) {
@@ -175,6 +207,7 @@ void setWindowCallbacks() {
 	glfwSetWindowSizeCallback(myWindow.getWindow(), windowResizeCallback);
     glfwSetKeyCallback(myWindow.getWindow(), keyboardCallback);
     glfwSetCursorPosCallback(myWindow.getWindow(), mouseCallback);
+    glfwSetInputMode(myWindow.getWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
 void initOpenGLState() {
@@ -254,6 +287,8 @@ void renderScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//render the scene
+    glm::mat4 view = myCamera.getViewMatrix();
+    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
 	// render the teapot
 	renderTeapot(myBasicShader);

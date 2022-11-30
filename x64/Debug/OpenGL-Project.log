@@ -1,14 +1,2 @@
 ﻿  Camera.cpp
-  main.cpp
-  Mesh.cpp
-C:\Users\Madalin\Documents\GitHub\OpenGL-Project\src\Mesh.cpp(32,72): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  Model3D.cpp
-C:\Users\Madalin\Documents\GitHub\OpenGL-Project\src\Model3D.cpp(89,40): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=GLuint
-          ]
-C:\Users\Madalin\Documents\GitHub\OpenGL-Project\src\Model3D.cpp(97,46): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Window.cpp
-  Generating Code...
   OpenGL-Project.vcxproj -> C:\Users\Madalin\Documents\GitHub\OpenGL-Project\x64\Debug\OpenGL-Project.exe
