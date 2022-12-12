@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\OneDrive\PG\L11\SkyBox.cpp" />
+    <ClCompile Include="..\..\..\OneDrive\PG\L11\stb_image.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
@@ -29,6 +31,8 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\OneDrive\PG\L11\SkyBox.hpp" />
+    <ClInclude Include="..\..\..\OneDrive\PG\L11\stb_image.h" />
     <ClInclude Include="src\Camera.hpp" />
     <ClInclude Include="src\Mesh.hpp" />
     <ClInclude Include="src\Model3D.hpp" />

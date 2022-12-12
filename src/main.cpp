@@ -17,6 +17,9 @@
 // window
 gps::Window myWindow;
 
+// skybox
+
+
 // Scene proprieties
 const float fov = 1000.0f;
 
