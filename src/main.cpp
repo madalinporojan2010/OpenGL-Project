@@ -11,6 +11,7 @@
 #include "Shader.hpp"
 #include "Camera.hpp"
 #include "Model3D.hpp"
+#include "SkyBox.hpp"
 
 #include <iostream>
 
@@ -18,7 +19,7 @@
 gps::Window myWindow;
 
 // skybox
-
+gps::SkyBox mySkyBox;
 
 // Scene proprieties
 const float fov = 1000.0f;
