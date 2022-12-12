@@ -1,0 +1,492 @@
+# Blender 3.3.1 MTL File: 'untitled.blend'
+# www.blender.org
+
+newmtl Material.001
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd landscapeTexture.png
+
+newmtl Material.002
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd cart_lp [Albedo].png
+
+newmtl Material.003
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Medieval_House_Diff.png
+
+newmtl Material__2
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__2.001
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__2.002
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__2.003
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__2.004
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__2.005
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__2.006
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__2.007
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__2.008
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__2.009
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__3
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__3.001
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__3.002
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__3.003
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__3.004
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__3.005
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__3.006
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__3.007
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__3.008
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__3.009
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Sequoia_sempervirens_bark_1_Diffuse.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_bark_1_normal.png
+
+newmtl Material__4
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd Sequoia_sempervirens_leaf_1_01_diffuse.png
+map_d Sequoia_sempervirens_leaf_1_06_mask.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_leaf_1_04_normal.png
+
+newmtl Material__4.001
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd Sequoia_sempervirens_leaf_1_01_diffuse.png
+map_d Sequoia_sempervirens_leaf_1_06_mask.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_leaf_1_04_normal.png
+
+newmtl Material__4.002
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd Sequoia_sempervirens_leaf_1_01_diffuse.png
+map_d Sequoia_sempervirens_leaf_1_06_mask.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_leaf_1_04_normal.png
+
+newmtl Material__4.003
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd Sequoia_sempervirens_leaf_1_01_diffuse.png
+map_d Sequoia_sempervirens_leaf_1_06_mask.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_leaf_1_04_normal.png
+
+newmtl Material__4.004
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd Sequoia_sempervirens_leaf_1_01_diffuse.png
+map_d Sequoia_sempervirens_leaf_1_06_mask.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_leaf_1_04_normal.png
+
+newmtl Material__4.005
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd Sequoia_sempervirens_leaf_1_01_diffuse.png
+map_d Sequoia_sempervirens_leaf_1_06_mask.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_leaf_1_04_normal.png
+
+newmtl Material__4.006
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd Sequoia_sempervirens_leaf_1_01_diffuse.png
+map_d Sequoia_sempervirens_leaf_1_06_mask.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_leaf_1_04_normal.png
+
+newmtl Material__4.007
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd Sequoia_sempervirens_leaf_1_01_diffuse.png
+map_d Sequoia_sempervirens_leaf_1_06_mask.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_leaf_1_04_normal.png
+
+newmtl Material__4.008
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd Sequoia_sempervirens_leaf_1_01_diffuse.png
+map_d Sequoia_sempervirens_leaf_1_06_mask.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_leaf_1_04_normal.png
+
+newmtl Material__4.009
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd Sequoia_sempervirens_leaf_1_01_diffuse.png
+map_d Sequoia_sempervirens_leaf_1_06_mask.png
+map_Bump -bm 1.000000 Sequoia_sempervirens_leaf_1_04_normal.png
+
+newmtl Stone_Bridge.001
+Ns 238.599991
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd StoneBridge_Moss-Diffuse.png
+map_Ks StoneBridge_Moss-Specular.png
+
+newmtl Stone_Bridge.003
+Ns 238.599991
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd StoneBridge_Moss-Diffuse.png
+map_Ks StoneBridge_Moss-Specular.png
+
+newmtl Water
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd water.jpg
+
+newmtl windmill_001_base_COL_jpg
+Ns 1.300799
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd windmill_001_base_COL.jpg
+
+newmtl windmill_001_lopatky_COL_jpg
+Ns 1.300799
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd windmill_001_lopatky_COL.jpg
+
+newmtl wood_fance_t1_m.002
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd wood_fance_mt1_Albedo.png
+
+newmtl wood_fance_t1_m.003
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd wood_fance_mt1_Albedo.png
+
+newmtl wood_fance_t1_m.005
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd wood_fance_mt1_Albedo.png
+
+newmtl wood_fance_t1_m.006
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd wood_fance_mt1_Albedo.png
+
+newmtl wood_fance_t1_m.007
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd wood_fance_mt1_Albedo.png
+
+newmtl wood_fance_t1_m.008
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd wood_fance_mt1_Albedo.png
+
+newmtl wood_fance_t1_m.009
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd wood_fance_mt1_Albedo.png
+
+newmtl wood_fance_t1_m.010
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd wood_fance_mt1_Albedo.png
