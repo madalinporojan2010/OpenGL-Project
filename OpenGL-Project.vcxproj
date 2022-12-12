@@ -24,6 +24,7 @@
     <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\Model3D.cpp" />
     <ClCompile Include="src\Shader.cpp" />
+    <ClCompile Include="src\SkyBox.cpp" />
     <ClCompile Include="src\stb_image.cpp" />
     <ClCompile Include="src\tiny_obj_loader.cpp" />
     <ClCompile Include="src\Window.cpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="src\Mesh.hpp" />
     <ClInclude Include="src\Model3D.hpp" />
     <ClInclude Include="src\Shader.hpp" />
+    <ClInclude Include="src\SkyBox.hpp" />
     <ClInclude Include="src\stb_image.h" />
     <ClInclude Include="src\tiny_obj_loader.h" />
     <ClInclude Include="src\Window.h" />

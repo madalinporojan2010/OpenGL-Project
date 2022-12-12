@@ -11,11 +11,16 @@
 #include "Shader.hpp"
 #include "Camera.hpp"
 #include "Model3D.hpp"
+#include "SkyBox.hpp"
 
 #include <iostream>
 
 // window
 gps::Window myWindow;
+
+// skybox
+gps::SkyBox mySkyBox;
+std::vector<const GLchar*> faces;
 
 // Scene proprieties
 const float fov = 1000.0f;
@@ -80,6 +85,7 @@ gps::Shader lightShader;
 gps::Shader screenQuadShader;
 gps::Shader depthMapShader;
 
+gps::Shader skyBoxShader;
 
 GLenum glCheckError_(const char *file, int line)
 {
@@ -255,6 +261,9 @@ void initShaders() {
     screenQuadShader.useShaderProgram();
     depthMapShader.loadShader("shaders/shadowMap.vert", "shaders/shadowMap.frag");
     depthMapShader.useShaderProgram();
+    skyBoxShader.loadShader("shaders/skyBoxShader.vert", "shaders/skyBoxShader.frag");
+    skyBoxShader.useShaderProgram();
+
 }
 
 void initUniforms() {
@@ -272,7 +281,7 @@ void initUniforms() {
     normalMatrixLoc = glGetUniformLocation(myCustomShader.shaderProgram, "normalMatrix");
     glUniformMatrix3fv(normalMatrixLoc, 1, GL_FALSE, glm::value_ptr(normalMatrix));
 
-    projection = glm::perspective(glm::radians(45.0f), (float)myWindow.getWindowDimensions().width / (float)myWindow.getWindowDimensions().height, 0.1f, 1000.0f);
+    projection = glm::perspective(glm::radians(45.0f), (float)myWindow.getWindowDimensions().width / (float)myWindow.getWindowDimensions().height, 0.1f, fov);
     projectionLoc = glGetUniformLocation(myCustomShader.shaderProgram, "projection");
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
@@ -289,6 +298,7 @@ void initUniforms() {
 
     lightShader.useShaderProgram();
     glUniformMatrix4fv(glGetUniformLocation(lightShader.shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
 }
 
 void initFBO() {
@@ -315,6 +325,17 @@ void initFBO() {
     glReadBuffer(GL_NONE);
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+void initSkyBox() {
+    faces.push_back("skybox/right.tga");
+    faces.push_back("skybox/left.tga");
+    faces.push_back("skybox/top.tga");
+    faces.push_back("skybox/bottom.tga");
+    faces.push_back("skybox/back.tga");
+    faces.push_back("skybox/front.tga");
+
+    mySkyBox.Load(faces);
 }
 
 glm::mat4 computeLightSpaceTrMatrix() {
@@ -429,6 +450,7 @@ void renderScene() {
 
         lightCube.Draw(lightShader);
     }
+    mySkyBox.Draw(skyBoxShader, view, projection);
 }
 
 void cleanup() {
@@ -454,6 +476,7 @@ int main(int argc, const char * argv[]) {
 	initUniforms();
     setWindowCallbacks();
     initFBO();
+    initSkyBox();
 
 	glCheckError();
 	// application loop
