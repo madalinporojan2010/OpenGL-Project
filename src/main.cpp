@@ -28,7 +28,7 @@ const float fov = 1000.0f;
 const unsigned int SHADOW_WIDTH = 2048;
 const unsigned int SHADOW_HEIGHT = 2048;
 
-const GLfloat near_plane = 0.1f, far_plane = 5.0f;
+const GLfloat near_plane = 0.1f, far_plane = 30.0f;
 
 // matrices
 glm::mat4 model;
@@ -38,7 +38,7 @@ glm::mat3 normalMatrix;
 glm::mat4 lightRotation;
 glm::mat4 lightYmovement;
 glm::mat4 lightSpaceTrMatrix;   
-glm::mat4 lightProjection = glm::ortho(-100.0f, 100.0f, -30.0f, 1.0f, near_plane, far_plane);
+glm::mat4 lightProjection = glm::ortho(-100.0f, 100.0f, -5.0f, 5.0f, near_plane, far_plane);
 glm::mat4 lightView;
 
 // light parameters
@@ -81,6 +81,7 @@ bool showDepthMap = false;
 
 // shaders
 gps::Shader myCustomShader;
+//gps::Shader reflectionShader;
 gps::Shader lightShader;
 gps::Shader screenQuadShader;
 gps::Shader depthMapShader;
@@ -250,6 +251,7 @@ void initModels() {
     ground.LoadModel("models/terrain/landscape.obj");
     lightCube.LoadModel("models/cube/cube.obj");
     screenQuad.LoadModel("models/quad/quad.obj");
+    mySkyBox.Load(faces);
 }
 
 void initShaders() {
@@ -263,37 +265,39 @@ void initShaders() {
     depthMapShader.useShaderProgram();
     skyBoxShader.loadShader("shaders/skyBoxShader.vert", "shaders/skyBoxShader.frag");
     skyBoxShader.useShaderProgram();
+    //reflectionShader.loadShader("shaders/reflectionShader.vert", "shaders/reflectionShader.frag");
+    //reflectionShader.useShaderProgram();
 
 }
 
-void initUniforms() {
-    myCustomShader.useShaderProgram();
+void initUniforms(gps::Shader shader) {
+    shader.useShaderProgram();
 
     model = glm::mat4(1.0f);
-    modelLoc = glGetUniformLocation(myCustomShader.shaderProgram, "model");
+    modelLoc = glGetUniformLocation(shader.shaderProgram, "model");
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
     view = myCamera.getViewMatrix();
-    viewLoc = glGetUniformLocation(myCustomShader.shaderProgram, "view");
+    viewLoc = glGetUniformLocation(shader.shaderProgram, "view");
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
     normalMatrix = glm::mat3(glm::inverseTranspose(view * model));
-    normalMatrixLoc = glGetUniformLocation(myCustomShader.shaderProgram, "normalMatrix");
+    normalMatrixLoc = glGetUniformLocation(shader.shaderProgram, "normalMatrix");
     glUniformMatrix3fv(normalMatrixLoc, 1, GL_FALSE, glm::value_ptr(normalMatrix));
 
     projection = glm::perspective(glm::radians(45.0f), (float)myWindow.getWindowDimensions().width / (float)myWindow.getWindowDimensions().height, 0.1f, fov);
-    projectionLoc = glGetUniformLocation(myCustomShader.shaderProgram, "projection");
+    projectionLoc = glGetUniformLocation(shader.shaderProgram, "projection");
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
     //set the light direction (direction towards the light)
-    lightDir = glm::vec3(0.0f, 5.0f, 1.0f);
+    lightDir = glm::vec3(0.0f, 10.0f, 1.0f);
     lightRotation = glm::rotate(glm::mat4(1.0f), glm::radians(lightAngle), glm::vec3(0.0f, 1.0f, 0.0f));
-    lightDirLoc = glGetUniformLocation(myCustomShader.shaderProgram, "lightDir");
+    lightDirLoc = glGetUniformLocation(shader.shaderProgram, "lightDir");
     glUniform3fv(lightDirLoc, 1, glm::value_ptr(glm::inverseTranspose(glm::mat3(view * lightRotation)) * lightDir));
 
     //set light color
     lightColor = glm::vec3(1.0f, 1.0f, 1.0f); //white light
-    lightColorLoc = glGetUniformLocation(myCustomShader.shaderProgram, "lightColor");
+    lightColorLoc = glGetUniformLocation(shader.shaderProgram, "lightColor");
     glUniform3fv(lightColorLoc, 1, glm::value_ptr(lightColor));
 
     lightShader.useShaderProgram();
@@ -334,8 +338,7 @@ void initSkyBox() {
     faces.push_back("skybox/bottom.tga");
     faces.push_back("skybox/back.tga");
     faces.push_back("skybox/front.tga");
-
-    mySkyBox.Load(faces);
+    
 }
 
 glm::mat4 computeLightSpaceTrMatrix() {
@@ -345,19 +348,6 @@ glm::mat4 computeLightSpaceTrMatrix() {
 }
 
 void renderLandScape(gps::Shader shader, bool depthPass) {
-    shader.useShaderProgram();
-
-    model = glm::rotate(glm::mat4(1.0f), glm::radians(angleY), glm::vec3(0.0f, 1.0f, 0.0f));
-    glUniformMatrix4fv(glGetUniformLocation(shader.shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
-
-    // do not send the normal matrix if we are rendering in the depth map
-    if (!depthPass) {
-        normalMatrix = glm::mat3(glm::inverseTranspose(view * model));
-        glUniformMatrix3fv(normalMatrixLoc, 1, GL_FALSE, glm::value_ptr(normalMatrix));
-    }
-
-    nanoSuit.Draw(shader);
-
     shader.useShaderProgram();
 
     model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 0.0f));
@@ -373,6 +363,23 @@ void renderLandScape(gps::Shader shader, bool depthPass) {
     ground.Draw(shader);
 }
 
+void renderNanoSuit(gps::Shader shader, bool depthPass) {
+
+    shader.useShaderProgram();
+
+    model = glm::rotate(glm::mat4(1.0f), glm::radians(angleY), glm::vec3(0.0f, 1.0f, 0.0f));
+    glUniformMatrix4fv(glGetUniformLocation(shader.shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+    // do not send the normal matrix if we are rendering in the depth map
+    if (!depthPass) {
+        normalMatrix = glm::mat3(glm::inverseTranspose(view * model));
+        glUniformMatrix3fv(normalMatrixLoc, 1, GL_FALSE, glm::value_ptr(normalMatrix));
+    }
+
+    nanoSuit.Draw(shader);
+
+}
+
 void renderScene() {
     depthMapShader.useShaderProgram();
     glUniformMatrix4fv(glGetUniformLocation(depthMapShader.shaderProgram, "lightSpaceTrMatrix"),
@@ -382,6 +389,7 @@ void renderScene() {
     glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
     glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFBO);
     glClear(GL_DEPTH_BUFFER_BIT);
+    renderNanoSuit(depthMapShader, true);
     renderLandScape(depthMapShader, true);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -435,6 +443,7 @@ void renderScene() {
             GL_FALSE,
             glm::value_ptr(computeLightSpaceTrMatrix()));
 
+        renderNanoSuit(myCustomShader, false);
         renderLandScape(myCustomShader, false);
 
         //draw a white cube around the light
@@ -471,12 +480,13 @@ int main(int argc, const char * argv[]) {
     }
 
     initOpenGLState();
+    initSkyBox();
 	initModels();
 	initShaders();
-	initUniforms();
+	initUniforms(myCustomShader);
+	//initUniforms(reflectionShader);
     setWindowCallbacks();
     initFBO();
-    initSkyBox();
 
 	glCheckError();
 	// application loop
