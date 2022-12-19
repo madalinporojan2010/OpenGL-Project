@@ -236,7 +236,7 @@ void setWindowCallbacks() {
 }
 
 void initOpenGLState() {
-	glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
+	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	glViewport(0, 0, myWindow.getWindowDimensions().width, myWindow.getWindowDimensions().height);
     glEnable(GL_FRAMEBUFFER_SRGB);
 	glEnable(GL_DEPTH_TEST); // enable depth-testing
