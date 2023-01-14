@@ -25,8 +25,8 @@ std::vector<const GLchar*> faces;
 // Scene proprieties
 const float fov = 1000.0f;
 
-const unsigned int SHADOW_WIDTH = 2048;
-const unsigned int SHADOW_HEIGHT = 2048;
+const unsigned int SHADOW_WIDTH = 4096*2;
+const unsigned int SHADOW_HEIGHT = 4096*2;
 
 const GLfloat near_plane = 0.1f, far_plane = 30.0f;
 
@@ -394,8 +394,8 @@ void renderScene() {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     glViewport(0, 0, myWindow.getWindowDimensions().width, myWindow.getWindowDimensions().height);
-
     glClear(GL_COLOR_BUFFER_BIT);
+
 
     if (showDepthMap) {
         screenQuadShader.useShaderProgram();
@@ -442,7 +442,9 @@ void renderScene() {
             1,
             GL_FALSE,
             glm::value_ptr(computeLightSpaceTrMatrix()));
-
+        
+        //glEnable(GL_BLEND); // transparenta
+        //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparenta
         renderNanoSuit(myCustomShader, false);
         renderLandScape(myCustomShader, false);
 

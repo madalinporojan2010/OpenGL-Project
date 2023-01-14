@@ -38,7 +38,7 @@ float computeShadow() {
 }
 
 float computeFog() {
-	float fogDensity = 0.05f;
+	float fogDensity = 0.02f;
 	float fragmentDistance = length(fPosEye);
 	float fogFactor = exp(-pow(fragmentDistance * fogDensity, 2));
 	
@@ -79,9 +79,13 @@ void main()
 	computeLightComponents();
 	
 	vec3 baseColor = vec3(0.9f, 0.35f, 0.0f);//orange
+	vec4 colorFromTexture = texture(diffuseTexture, fTexCoords);
+	//if(colorFromTexture.a < 0.3f) {
+	//	discard; //texture discarding
+	//}
 	
-	ambient *= texture(diffuseTexture, fTexCoords).rgb;
-	diffuse *= texture(diffuseTexture, fTexCoords).rgb;
+	ambient *= colorFromTexture.rgb;
+	diffuse *= colorFromTexture.rgb;
 	specular *= texture(specularTexture, fTexCoords).rgb;
 
 	
@@ -90,5 +94,5 @@ void main()
 	
 	vec3 color = min((ambient + (1.0f - shadow) * diffuse) + (1.0f - shadow) * specular, 1.0f);
     
-    fColor = mix(fogColor, vec4(color, 1.0f), fogFactor);
+    fColor = mix(fogColor, vec4(color, 0.3f), fogFactor); //Pt transparenta se citeste valoarea transparentei din textura
 }
