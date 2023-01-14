@@ -35,23 +35,27 @@ glm::mat4 model;
 glm::mat4 view;
 glm::mat4 projection;
 glm::mat3 normalMatrix;
-glm::mat4 lightRotation;
 glm::mat4 lightYmovement;
-glm::mat4 lightSpaceTrMatrix;   
+glm::mat4 mainLightSpaceTrMatrix;   
 glm::mat4 lightProjection = glm::ortho(-100.0f, 100.0f, -5.0f, 5.0f, near_plane, far_plane);
 glm::mat4 lightView;
 
 // light parameters
-glm::vec3 lightDir;
-glm::vec3 lightColor;
+
+struct LightStruct {
+    glm::vec3 lightDir;
+    glm::vec3 lightColor;
+    GLint lightDirLoc;
+    GLint lightColorLoc;
+    glm::mat4 lightRotation;
+} mainLight, secondaryLight;
+
 
 // shader uniform locations
 GLint modelLoc;
 GLint viewLoc;
 GLint projectionLoc;
 GLint normalMatrixLoc;
-GLint lightDirLoc;
-GLint lightColorLoc;
 
 // camera
 gps::Camera myCamera(
@@ -290,15 +294,26 @@ void initUniforms(gps::Shader shader) {
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
     //set the light direction (direction towards the light)
-    lightDir = glm::vec3(0.0f, 10.0f, 1.0f);
-    lightRotation = glm::rotate(glm::mat4(1.0f), glm::radians(lightAngle), glm::vec3(0.0f, 1.0f, 0.0f));
-    lightDirLoc = glGetUniformLocation(shader.shaderProgram, "lightDir");
-    glUniform3fv(lightDirLoc, 1, glm::value_ptr(glm::inverseTranspose(glm::mat3(view * lightRotation)) * lightDir));
+    mainLight.lightDir = glm::vec3(0.0f, 10.0f, 1.0f);
+    mainLight.lightRotation = glm::rotate(glm::mat4(1.0f), glm::radians(lightAngle), glm::vec3(0.0f, 1.0f, 0.0f));
+    mainLight.lightDirLoc = glGetUniformLocation(shader.shaderProgram, "mainLightDir");
+    glUniform3fv(mainLight.lightDirLoc, 1, glm::value_ptr(glm::inverseTranspose(glm::mat3(view * mainLight.lightRotation)) * mainLight.lightDir));
+    
+    //set the light direction (direction towards the light)
+    secondaryLight.lightDir = glm::vec3(10.0f, 1000.0f, 1.0f);
+    secondaryLight.lightRotation = glm::rotate(glm::mat4(1.0f), glm::radians(lightAngle), glm::vec3(0.0f, 1.0f, 0.0f));
+    secondaryLight.lightDirLoc = glGetUniformLocation(shader.shaderProgram, "secondaryLightDir");
+    glUniform3fv(secondaryLight.lightDirLoc, 1, glm::value_ptr(glm::inverseTranspose(glm::mat3(view * secondaryLight.lightRotation)) * secondaryLight.lightDir));
 
     //set light color
-    lightColor = glm::vec3(1.0f, 1.0f, 1.0f); //white light
-    lightColorLoc = glGetUniformLocation(shader.shaderProgram, "lightColor");
-    glUniform3fv(lightColorLoc, 1, glm::value_ptr(lightColor));
+    mainLight.lightColor = glm::vec3(1.0f, 0.0f, 0.0f); //white light
+    mainLight.lightColorLoc = glGetUniformLocation(shader.shaderProgram, "mainLightColor");
+    glUniform3fv(mainLight.lightColorLoc, 1, glm::value_ptr(mainLight.lightColor));
+
+    //set light color
+    secondaryLight.lightColor = glm::vec3(0.0f, 0.0f, 1.0f); //white light
+    secondaryLight.lightColorLoc = glGetUniformLocation(shader.shaderProgram, "secondaryLightColor");
+    glUniform3fv(secondaryLight.lightColorLoc, 1, glm::value_ptr(secondaryLight.lightColor));
 
     lightShader.useShaderProgram();
     glUniformMatrix4fv(glGetUniformLocation(lightShader.shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
@@ -341,8 +356,8 @@ void initSkyBox() {
     
 }
 
-glm::mat4 computeLightSpaceTrMatrix() {
-    lightView = glm::lookAt(glm::inverseTranspose(glm::mat3(lightRotation)) * lightDir, glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+glm::mat4 computeMainLightSpaceTrMatrix() {
+    lightView = glm::lookAt(glm::inverseTranspose(glm::mat3(mainLight.lightRotation)) * mainLight.lightDir, glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
     return lightProjection * lightView;
 }
@@ -382,10 +397,10 @@ void renderNanoSuit(gps::Shader shader, bool depthPass) {
 
 void renderScene() {
     depthMapShader.useShaderProgram();
-    glUniformMatrix4fv(glGetUniformLocation(depthMapShader.shaderProgram, "lightSpaceTrMatrix"),
+    glUniformMatrix4fv(glGetUniformLocation(depthMapShader.shaderProgram, "mainLightSpaceTrMatrix"),
         1,
         GL_FALSE,
-        glm::value_ptr(computeLightSpaceTrMatrix()));
+        glm::value_ptr(computeMainLightSpaceTrMatrix()));
     glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
     glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFBO);
     glClear(GL_DEPTH_BUFFER_BIT);
@@ -430,18 +445,18 @@ void renderScene() {
         view = myCamera.getViewMatrix();
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
-        lightRotation = glm::rotate(glm::mat4(1.0f), glm::radians(lightAngle), glm::vec3(0.0f, 1.0f, 0.0f));
-        glUniform3fv(lightDirLoc, 1, glm::value_ptr(glm::inverseTranspose(glm::mat3(view * lightRotation)) * lightDir));
+        mainLight.lightRotation = glm::rotate(glm::mat4(1.0f), glm::radians(lightAngle), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniform3fv(mainLight.lightDirLoc, 1, glm::value_ptr(glm::inverseTranspose(glm::mat3(view * mainLight.lightRotation)) * mainLight.lightDir));
 
         //bind the shadow map
         glActiveTexture(GL_TEXTURE3);
         glBindTexture(GL_TEXTURE_2D, depthMapTexture);
         glUniform1i(glGetUniformLocation(myCustomShader.shaderProgram, "shadowMap"), 3);
 
-        glUniformMatrix4fv(glGetUniformLocation(myCustomShader.shaderProgram, "lightSpaceTrMatrix"),
+        glUniformMatrix4fv(glGetUniformLocation(myCustomShader.shaderProgram, "mainLightSpaceTrMatrix"),
             1,
             GL_FALSE,
-            glm::value_ptr(computeLightSpaceTrMatrix()));
+            glm::value_ptr(computeMainLightSpaceTrMatrix()));
         
         //glEnable(GL_BLEND); // transparenta
         //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparenta
@@ -454,8 +469,8 @@ void renderScene() {
 
         glUniformMatrix4fv(glGetUniformLocation(lightShader.shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
-        model = lightRotation;
-        model = glm::translate(model, 1.0f * lightDir);
+        model = mainLight.lightRotation;
+        model = glm::translate(model, 1.0f * mainLight.lightDir);
         model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
         glUniformMatrix4fv(glGetUniformLocation(lightShader.shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
 

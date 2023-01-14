@@ -1,30 +1,39 @@
 #version 410 core
 
+
+in vec4 mainFragPosLightSpace;
+
 in vec3 fNormal;
 in vec4 fPosEye;
 in vec2 fTexCoords;
-in vec4 fragPosLightSpace;
+
 
 out vec4 fColor;
 
+
 //lighting
-uniform	vec3 lightDir;
-uniform	vec3 lightColor;
+uniform	vec3 mainLightDir;
+uniform	vec3 secondaryLightDir;
+
+uniform	vec3 mainLightColor;
+uniform	vec3 secondaryLightColor;
 
 //texture
 uniform sampler2D diffuseTexture;
 uniform sampler2D specularTexture;
 uniform sampler2D shadowMap;
 
-vec3 ambient;
-float ambientStrength = 0.2f;
-vec3 diffuse;
-vec3 specular;
-float specularStrength = 0.5f;
-float shininess = 32.0f;
+struct LightStruct {
+	float ambientStrength;
+	float specularStrength;
+	float shininess;
+	vec3 lightColor;
+	vec3 lightDir;
+	vec4 fragPosLightSpace;
+} mainLight, secondaryLight;
 
-float computeShadow() {
-	vec3 normalizedCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+float computeShadow(LightStruct light) {
+	vec3 normalizedCoords = light.fragPosLightSpace.xyz / light.fragPosLightSpace.w;
 	normalizedCoords = normalizedCoords * 0.5f + 0.5f;
 	if (normalizedCoords.z > 1.0f) {
 		return 0.0f;
@@ -32,7 +41,7 @@ float computeShadow() {
 
 	float closestDepth = texture(shadowMap, normalizedCoords.xy).r;
 	float currentDepth = normalizedCoords.z;
-	float bias = max(0.0f * (1.0f - dot(fNormal, lightDir)), 0.005f);
+	float bias = max(0.0f * (1.0f - dot(fNormal, light.lightDir)), 0.005f);
 	float shadow = currentDepth - bias > closestDepth ? 1.0f : 0.0f;
 	return shadow;
 }
@@ -46,53 +55,66 @@ float computeFog() {
 }
 
 
-
-void computeLightComponents()
+vec3 computeLightComponents(LightStruct light, bool mainLight, bool punctiform)
 {		
+	float shadow = 0.0f;
+	if(mainLight)
+		shadow = computeShadow(light);
 	vec3 cameraPosEye = vec3(0.0f);//in eye coordinates, the viewer is situated at the origin
 	
 	//transform normal
 	vec3 normalEye = normalize(fNormal);	
 	
 	//compute light direction
-	vec3 lightDirN = normalize(lightDir);
+	vec3 lightDirN = normalize(light.lightDir - fPosEye.xyz);
 	
 	//compute view direction 
 	vec3 viewDirN = normalize(cameraPosEye - fPosEye.xyz);
 		
 	//compute ambient light
-	ambient = ambientStrength * lightColor;
-	
-	//compute diffuse light
-	diffuse = max(dot(normalEye, lightDirN), 0.0f) * lightColor;
-	
+	vec3 ambient;
+	vec3 diffuse;
 	//compute specular light
 	vec3 reflection = reflect(-lightDirN, normalEye);
-	float specCoeff = pow(max(dot(viewDirN, reflection), 0.0f), shininess);
-	specular = specularStrength * specCoeff * lightColor;
+	float specCoeff = pow(max(dot(viewDirN, reflection), 0.0f), light.shininess);
+	vec3 specular;
+	if (punctiform) {	
+		float constant = 1.0f;
+		float linear = 0.0045f;
+		float quadratic = 0.0075f;
+		float dist = length(light.lightDir - fPosEye.xyz);
+		float att = 1.0f / (constant + linear * dist + quadratic * (dist * dist));
+		ambient = att * light.ambientStrength * light.lightColor;
+		diffuse = att * max(dot(normalEye, lightDirN), 0.0f) * light.lightColor;
+		specular = att * light.specularStrength * specCoeff * light.lightColor;
+	}
+	else {
+		ambient = light.ambientStrength * light.lightColor;
+		diffuse = max(dot(normalEye, lightDirN), 0.0f) * light.lightColor;
+		specular = light.specularStrength * specCoeff * light.lightColor;
+	}
+	
+	
+	ambient *= texture(diffuseTexture, fTexCoords).rgb;
+	diffuse *= texture(diffuseTexture, fTexCoords).rgb;
+	specular *= texture(specularTexture, fTexCoords).rgb;
+
+	//if(colorFromTexture.a < 0.3f) {
+	//	discard; //texture discarding
+	//}
+
+	return min((ambient + (1.0f - shadow) * diffuse) + (1.0f - shadow) * specular, 1.0f);
 }
 
 void main() 
 {
-	float shadow = computeShadow();
-	
-	computeLightComponents();
-	
-	vec3 baseColor = vec3(0.9f, 0.35f, 0.0f);//orange
-	vec4 colorFromTexture = texture(diffuseTexture, fTexCoords);
-	//if(colorFromTexture.a < 0.3f) {
-	//	discard; //texture discarding
-	//}
-	
-	ambient *= colorFromTexture.rgb;
-	diffuse *= colorFromTexture.rgb;
-	specular *= texture(specularTexture, fTexCoords).rgb;
+	mainLight = LightStruct(0.01f, 0.5f, 32.0f, mainLightColor, mainLightDir, mainFragPosLightSpace);
+	secondaryLight = LightStruct(0.01f, 0.5f, 32.0f, secondaryLightColor, secondaryLightDir, vec4(1.0f,1.0f,1.0f,1.0f));
 
-	
 	float fogFactor = computeFog();
 	vec4 fogColor = vec4(0.5f, 0.5f, 0.5f, 1.0f); //fog
 	
-	vec3 color = min((ambient + (1.0f - shadow) * diffuse) + (1.0f - shadow) * specular, 1.0f);
+	vec3 color = computeLightComponents(mainLight, true, true) + computeLightComponents(secondaryLight, false, false); //+ computeLightComponents(secondaryLight);
     
     fColor = mix(fogColor, vec4(color, 0.3f), fogFactor); //Pt transparenta se citeste valoarea transparentei din textura
 }
