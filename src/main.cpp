@@ -72,6 +72,11 @@ GLboolean pressedKeys[1024];
 gps::Model3D screenQuad;
 gps::Model3D ground;
 
+
+// animated models
+gps::Model3D frontDoor;
+float frontDoorRotationAngle = 0.0f;
+
 // light models
 gps::Model3D lightCube;
 GLfloat lightAngle = 0.0f;
@@ -247,6 +252,16 @@ void processMovement() {
         if (secondaryLight.lightBrightness < 0.9f)
             secondaryLight.lightBrightness += 0.01f;
     }
+
+    if (pressedKeys[GLFW_KEY_N]) {
+        if (frontDoorRotationAngle < 90.0f)
+            frontDoorRotationAngle += 1.0f;
+    }
+
+    if (pressedKeys[GLFW_KEY_B]) {
+        if (frontDoorRotationAngle > 0.99f)
+            frontDoorRotationAngle -= 1.0f;
+    }
 }
 
 void initOpenGLWindow() {
@@ -275,6 +290,7 @@ void initModels() {
     ground.LoadModel("models/terrain/landscape.obj");
     lightCube.LoadModel("models/cube/cube.obj");
     screenQuad.LoadModel("models/quad/quad.obj");
+    frontDoor.LoadModel("models/doors/front_Door.obj");
     mySkyBox.Load(faces);
 }
 
@@ -385,17 +401,38 @@ glm::mat4 computeMainLightSpaceTrMatrix() {
 void renderLandScape(gps::Shader shader, bool depthPass) {
     shader.useShaderProgram();
 
-    model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 0.0f));
-    model = glm::scale(model, glm::vec3(0.5f));
-    glUniformMatrix4fv(glGetUniformLocation(shader.shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
+    glm::mat4 landScapeModel = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 0.0f));
+    landScapeModel = glm::scale(landScapeModel, glm::vec3(0.5f));
+    glUniformMatrix4fv(glGetUniformLocation(shader.shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(landScapeModel));
 
     // do not send the normal matrix if we are rendering in the depth map
     if (!depthPass) {
-        normalMatrix = glm::mat3(glm::inverseTranspose(view * model));
+        normalMatrix = glm::mat3(glm::inverseTranspose(view * landScapeModel));
         glUniformMatrix3fv(normalMatrixLoc, 1, GL_FALSE, glm::value_ptr(normalMatrix));
     }
 
     ground.Draw(shader);
+}
+
+
+void renderFrontDoor(gps::Shader shader, bool depthPass) {
+    shader.useShaderProgram();
+
+    glm::mat4 frontDoorModel = glm::mat4(1.0f);
+    frontDoorModel = glm::translate(frontDoorModel, glm::vec3(-10.555405f, 2.280203f, 0.319486f));
+    frontDoorModel = glm::scale(frontDoorModel, glm::vec3(0.5f));
+    frontDoorModel = glm::rotate(frontDoorModel, glm::radians(frontDoorRotationAngle), glm::vec3(0.0f, 1.0f, 0.0f));
+    
+
+
+    glUniformMatrix4fv(glGetUniformLocation(shader.shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(frontDoorModel));
+
+    // do not send the normal matrix if we are rendering in the depth map
+    if (!depthPass) {
+        normalMatrix = glm::mat3(glm::inverseTranspose(view * frontDoorModel));
+        glUniformMatrix3fv(normalMatrixLoc, 1, GL_FALSE, glm::value_ptr(normalMatrix));
+    }
+    frontDoor.Draw(shader);
 }
 
 //void renderNanoSuit(gps::Shader shader, bool depthPass) {
@@ -424,7 +461,10 @@ void renderScene() {
     glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
     glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFBO);
     glClear(GL_DEPTH_BUFFER_BIT);
+    
     renderLandScape(depthMapShader, true);
+    renderFrontDoor(depthMapShader, true);
+
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     glViewport(0, 0, myWindow.getWindowDimensions().width, myWindow.getWindowDimensions().height);
@@ -486,6 +526,7 @@ void renderScene() {
         //glEnable(GL_BLEND); // transparenta
         //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparenta
         renderLandScape(myCustomShader, false);
+        renderFrontDoor(myCustomShader, false);
 
         //draw a white cube around the light
 
@@ -499,6 +540,8 @@ void renderScene() {
         glUniformMatrix4fv(glGetUniformLocation(lightShader.shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
         lightCube.Draw(lightShader);
+
+
     }
     mySkyBox.Draw(skyBoxShader, view, projection);
 }
@@ -549,10 +592,11 @@ int main(int argc, const char * argv[]) {
         step++;
 
         processMovement();
-	    renderScene();
-
+        renderScene();
 		glfwPollEvents();
 		glfwSwapBuffers(myWindow.getWindow());
+
+    
         glCheckError();
 
 
