@@ -369,12 +369,12 @@ void initFBO() {
 }
 
 void initSkyBox() {
-    faces.push_back("skybox/right.tga");
-    faces.push_back("skybox/left.tga");
-    faces.push_back("skybox/top.tga");
-    faces.push_back("skybox/bottom.tga");
-    faces.push_back("skybox/back.tga");
-    faces.push_back("skybox/front.tga");
+    faces.push_back("skybox/frozen_rt.tga");
+    faces.push_back("skybox/frozen_lf.tga");
+    faces.push_back("skybox/frozen_up.tga");
+    faces.push_back("skybox/frozen_dn.tga");
+    faces.push_back("skybox/frozen_bk.tga");
+    faces.push_back("skybox/frozen_ft.tga");
     
 }
 
