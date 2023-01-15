@@ -60,11 +60,11 @@ GLint normalMatrixLoc;
 
 // camera
 gps::Camera myCamera(
-    glm::vec3(0.0f, 0.0f, 3.0f),
+    glm::vec3(0.0f, 2.0f, 3.0f),
     glm::vec3(0.0f, 0.0f, -10.0f),
     glm::vec3(0.0f, 1.0f, 0.0f));
 
-GLfloat cameraSpeed = 0.1f;
+GLfloat cameraSpeed = 0.05f;
 
 GLboolean pressedKeys[1024];
 
@@ -76,6 +76,8 @@ gps::Model3D ground;
 // animated models
 gps::Model3D frontDoor;
 float frontDoorRotationAngle = 0.0f;
+
+bool beginFrontDoorAnimation = false;
 
 // light models
 gps::Model3D lightCube;
@@ -262,6 +264,16 @@ void processMovement() {
         if (frontDoorRotationAngle > 0.99f)
             frontDoorRotationAngle -= 1.0f;
     }
+
+    if (pressedKeys[GLFW_KEY_Z]) {
+        // reset door animation
+        beginFrontDoorAnimation = false;
+        frontDoorRotationAngle = 0.0f;
+    }
+    if (pressedKeys[GLFW_KEY_C]) {
+        // begin door animation
+        beginFrontDoorAnimation = true;
+    }
 }
 
 void initOpenGLWindow() {
@@ -330,7 +342,7 @@ void initUniforms(gps::Shader shader) {
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
     //set the light direction (direction towards the light)
-    mainLight.lightDir = glm::vec3(15.438160f, 16.868689f, -7.212670f);
+    mainLight.lightDir = glm::vec3(15.438160f, 12.868689f, -7.212670f);
     mainLight.lightRotation = glm::rotate(glm::mat4(1.0f), glm::radians(lightAngle), glm::vec3(0.0f, 1.0f, 0.0f));
     mainLight.lightDirLoc = glGetUniformLocation(shader.shaderProgram, "mainLightDir");
     glUniform3fv(mainLight.lightDirLoc, 1, glm::value_ptr(glm::inverseTranspose(glm::mat3(view * mainLight.lightRotation)) * mainLight.lightDir));
@@ -421,6 +433,11 @@ void renderFrontDoor(gps::Shader shader, bool depthPass) {
     glm::mat4 frontDoorModel = glm::mat4(1.0f);
     frontDoorModel = glm::translate(frontDoorModel, glm::vec3(-10.555405f, 2.280203f, 0.319486f));
     frontDoorModel = glm::scale(frontDoorModel, glm::vec3(0.5f));
+
+
+    if (beginFrontDoorAnimation && frontDoorRotationAngle < 90.0f) {
+        frontDoorRotationAngle += 0.5f ;
+    }
     frontDoorModel = glm::rotate(frontDoorModel, glm::radians(frontDoorRotationAngle), glm::vec3(0.0f, 1.0f, 0.0f));
     
 
@@ -453,6 +470,7 @@ void renderFrontDoor(gps::Shader shader, bool depthPass) {
 //}
 
 void renderScene() {
+
     depthMapShader.useShaderProgram();
     glUniformMatrix4fv(glGetUniformLocation(depthMapShader.shaderProgram, "mainLightSpaceTrMatrix"),
         1,
@@ -498,6 +516,7 @@ void renderScene() {
         glViewport(0, 0, myWindow.getWindowDimensions().width, myWindow.getWindowDimensions().height);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
 
         myCustomShader.useShaderProgram();
 
