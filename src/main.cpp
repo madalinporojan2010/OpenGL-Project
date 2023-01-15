@@ -72,6 +72,7 @@ GLboolean pressedKeys[1024];
 gps::Model3D screenQuad;
 gps::Model3D ground;
 
+gps::Model3D windows;
 
 // animated models
 gps::Model3D frontDoor;
@@ -303,6 +304,7 @@ void initModels() {
     lightCube.LoadModel("models/cube/cube.obj");
     screenQuad.LoadModel("models/quad/quad.obj");
     frontDoor.LoadModel("models/doors/front_Door.obj");
+    windows.LoadModel("models/windows/balcony-windows.obj");
     mySkyBox.Load(faces);
 }
 
@@ -426,6 +428,22 @@ void renderLandScape(gps::Shader shader, bool depthPass) {
     ground.Draw(shader);
 }
 
+void renderWindows(gps::Shader shader, bool depthPass) {
+    shader.useShaderProgram();
+
+    glm::mat4 windowsModel = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 0.0f));
+    windowsModel = glm::scale(windowsModel, glm::vec3(0.5f));
+    glUniformMatrix4fv(glGetUniformLocation(shader.shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(windowsModel));
+
+    // do not send the normal matrix if we are rendering in the depth map
+    if (!depthPass) {
+        normalMatrix = glm::mat3(glm::inverseTranspose(view * windowsModel));
+        glUniformMatrix3fv(normalMatrixLoc, 1, GL_FALSE, glm::value_ptr(normalMatrix));
+    }
+
+    windows.Draw(shader);
+}
+
 
 void renderFrontDoor(gps::Shader shader, bool depthPass) {
     shader.useShaderProgram();
@@ -481,6 +499,7 @@ void renderScene() {
     glClear(GL_DEPTH_BUFFER_BIT);
     
     renderLandScape(depthMapShader, true);
+    renderWindows(depthMapShader, true);
     renderFrontDoor(depthMapShader, true);
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -542,9 +561,13 @@ void renderScene() {
             GL_FALSE,
             glm::value_ptr(computeMainLightSpaceTrMatrix()));
         
-        //glEnable(GL_BLEND); // transparenta
-        //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparenta
         renderLandScape(myCustomShader, false);
+
+        glEnable(GL_BLEND); // transparenta
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparenta
+        renderWindows(myCustomShader, false);
+        glDisable(GL_BLEND); // transparenta
+
         renderFrontDoor(myCustomShader, false);
 
         //draw a white cube around the light
