@@ -410,6 +410,26 @@ d 1.000000
 illum 2
 map_Kd bark_willow_diff_4k.jpg
 
+newmtl boat-ledges-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd wood3.jpg
+
+newmtl boat-main-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd wood1.jpg
+
 newmtl ground-material
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
@@ -449,6 +469,26 @@ Ni 1.450000
 d 1.000000
 illum 2
 map_Kd lamp-texture.png
+
+newmtl lighthouse-stone
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd stone_tiles_diff_4k.jpg
+
+newmtl lighthouse-top-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lighthouse-top.png
 
 newmtl pines-material
 Ns 250.000000

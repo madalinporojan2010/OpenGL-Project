@@ -25,8 +25,8 @@ std::vector<const GLchar*> faces;
 // Scene proprieties
 const float fov = 1000.0f;
 
-const unsigned int SHADOW_WIDTH = 4096*2;
-const unsigned int SHADOW_HEIGHT = 4096*2;
+const unsigned int SHADOW_WIDTH = 4096;
+const unsigned int SHADOW_HEIGHT = 4096;
 
 const GLfloat near_plane = 0.1f, far_plane = 30.0f;
 
@@ -37,7 +37,7 @@ glm::mat4 projection;
 glm::mat3 normalMatrix;
 glm::mat4 lightYmovement;
 glm::mat4 mainLightSpaceTrMatrix;   
-glm::mat4 lightProjection = glm::ortho(-150.0f, 150.0f, -10.0f, 10.0f, near_plane, far_plane);
+glm::mat4 lightProjection = glm::ortho(-100.0f, 100.0f, -5.0f, 5.0f, near_plane, far_plane);
 glm::mat4 lightView;
 
 // light parameters
@@ -69,7 +69,6 @@ GLfloat cameraSpeed = 0.1f;
 GLboolean pressedKeys[1024];
 
 // models
-gps::Model3D nanoSuit;
 gps::Model3D screenQuad;
 gps::Model3D ground;
 
@@ -273,7 +272,6 @@ void initOpenGLState() {
 }
 
 void initModels() {
-    nanoSuit.LoadModel("models/nanosuit/nanosuit.obj");
     ground.LoadModel("models/terrain/landscape.obj");
     lightCube.LoadModel("models/cube/cube.obj");
     screenQuad.LoadModel("models/quad/quad.obj");
@@ -400,22 +398,22 @@ void renderLandScape(gps::Shader shader, bool depthPass) {
     ground.Draw(shader);
 }
 
-void renderNanoSuit(gps::Shader shader, bool depthPass) {
-
-    shader.useShaderProgram();
-
-    model = glm::rotate(glm::mat4(1.0f), glm::radians(angleY), glm::vec3(0.0f, 1.0f, 0.0f));
-    glUniformMatrix4fv(glGetUniformLocation(shader.shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
-
-    // do not send the normal matrix if we are rendering in the depth map
-    if (!depthPass) {
-        normalMatrix = glm::mat3(glm::inverseTranspose(view * model));
-        glUniformMatrix3fv(normalMatrixLoc, 1, GL_FALSE, glm::value_ptr(normalMatrix));
-    }
-
-    nanoSuit.Draw(shader);
-
-}
+//void renderNanoSuit(gps::Shader shader, bool depthPass) {
+//
+//    shader.useShaderProgram();
+//
+//    model = glm::rotate(glm::mat4(1.0f), glm::radians(angleY), glm::vec3(0.0f, 1.0f, 0.0f));
+//    glUniformMatrix4fv(glGetUniformLocation(shader.shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
+//
+//    // do not send the normal matrix if we are rendering in the depth map
+//    if (!depthPass) {
+//        normalMatrix = glm::mat3(glm::inverseTranspose(view * model));
+//        glUniformMatrix3fv(normalMatrixLoc, 1, GL_FALSE, glm::value_ptr(normalMatrix));
+//    }
+//
+//    nanoSuit.Draw(shader);
+//
+//}
 
 void renderScene() {
     depthMapShader.useShaderProgram();
@@ -426,7 +424,6 @@ void renderScene() {
     glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
     glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFBO);
     glClear(GL_DEPTH_BUFFER_BIT);
-    renderNanoSuit(depthMapShader, true);
     renderLandScape(depthMapShader, true);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -488,7 +485,6 @@ void renderScene() {
         
         //glEnable(GL_BLEND); // transparenta
         //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparenta
-        renderNanoSuit(myCustomShader, false);
         renderLandScape(myCustomShader, false);
 
         //draw a white cube around the light
