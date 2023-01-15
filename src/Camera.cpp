@@ -21,6 +21,7 @@ namespace gps {
 
     //update the camera internal parameters following a camera move event
     void Camera::move(MOVE_DIRECTION direction, float speed) {
+        std::printf("Coords: %f %f %f\n", this->cameraPosition.x, this->cameraPosition.y, this->cameraPosition.z);
         switch (direction) {
             case MOVE_FORWARD:
                 this->cameraPosition -= speed * (-this->cameraFrontDirection);

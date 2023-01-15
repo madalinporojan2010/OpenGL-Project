@@ -238,50 +238,6 @@ illum 2
 map_Kd WoodFloor010_4K_Color.jpg
 map_Ns WoodFloor010_4K_Roughness.jpg
 
-newmtl Material.005
-Ns 360.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd snow_03_diff_4k.jpg
-
-newmtl Material.006
-Ns 360.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd water_texture.png
-
-newmtl Material.012
-Ns 360.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd bark_willow_diff_4k.jpg
-
-newmtl Material.013
-Ns 360.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd pines2.jpg
-
 newmtl PARK
 Ka 1.000000 1.000000 1.000000
 Ks 0.056364 0.056364 0.056364
@@ -374,17 +330,6 @@ illum 2
 map_Kd Tiles090_4K_Color.jpg
 map_Ns Tiles090_4K_Roughness.jpg
 
-newmtl Tree.Birch.Bark.Mat.002
-Ns 250.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.458824 0.458824 0.458824
-Ks 0.200000 0.200000 0.200000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd bark_willow_diff_4k.jpg
-
 newmtl WOOD_3
 Ka 1.000000 1.000000 1.000000
 Ks 0.092727 0.092727 0.092727
@@ -455,6 +400,26 @@ illum 2
 map_Kd WoodFloor07_col.jpg
 map_Ns WoodFloor07_rgh.jpg
 
+newmtl bark-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd bark_willow_diff_4k.jpg
+
+newmtl ground-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd snow_03_diff_4k.jpg
+
 newmtl hidden_material
 Ns 360.000000
 Ka 1.000000 1.000000 1.000000
@@ -464,3 +429,43 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
+
+newmtl lamp-bulb-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lamp-bulb-texture.png
+
+newmtl lamp-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lamp-texture.png
+
+newmtl pines-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd pines2.jpg
+
+newmtl water-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd water_texture.png

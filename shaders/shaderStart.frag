@@ -108,13 +108,13 @@ vec3 computeLightComponents(LightStruct light, bool mainLight, bool punctiform)
 
 void main() 
 {
-	mainLight = LightStruct(0.01f, 0.5f, 32.0f, mainLightColor, mainLightDir, mainFragPosLightSpace);
-	secondaryLight = LightStruct(0.01f, 0.5f, 32.0f, secondaryLightColor, secondaryLightDir, vec4(1.0f,1.0f,1.0f,1.0f));
+	mainLight = LightStruct(0.5f, 0.5f, 32.0f, mainLightColor, mainLightDir, mainFragPosLightSpace);
+	secondaryLight = LightStruct(0.5f, 0.5f, 32.0f, secondaryLightColor, secondaryLightDir, vec4(1.0f,1.0f,1.0f,1.0f));
 
 	float fogFactor = computeFog();
 	vec4 fogColor = vec4(0.5f, 0.5f, 0.5f, 1.0f); //fog
 	
-	vec3 color = computeLightComponents(mainLight, true, true) + computeLightComponents(secondaryLight, false, false); //+ computeLightComponents(secondaryLight);
+	vec3 color = computeLightComponents(mainLight, true, false) + computeLightComponents(secondaryLight, false, true); //+ computeLightComponents(secondaryLight);
     
     fColor = mix(fogColor, vec4(color, 0.3f), fogFactor); //Pt transparenta se citeste valoarea transparentei din textura
 }

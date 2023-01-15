@@ -37,7 +37,7 @@ glm::mat4 projection;
 glm::mat3 normalMatrix;
 glm::mat4 lightYmovement;
 glm::mat4 mainLightSpaceTrMatrix;   
-glm::mat4 lightProjection = glm::ortho(-100.0f, 100.0f, -5.0f, 5.0f, near_plane, far_plane);
+glm::mat4 lightProjection = glm::ortho(-150.0f, 150.0f, -10.0f, 10.0f, near_plane, far_plane);
 glm::mat4 lightView;
 
 // light parameters
@@ -48,6 +48,7 @@ struct LightStruct {
     GLint lightDirLoc;
     GLint lightColorLoc;
     glm::mat4 lightRotation;
+    GLfloat lightBrightness;
 } mainLight, secondaryLight;
 
 
@@ -193,14 +194,6 @@ void processMovement() {
         angleY += 1.0f;
     }
 
-    if (pressedKeys[GLFW_KEY_J]) {
-        lightAngle -= 1.0f;
-    }
-
-    if (pressedKeys[GLFW_KEY_L]) {
-        lightAngle += 1.0f;
-    }
-
     if (pressedKeys[GLFW_KEY_I]) {
         Ypos -= 1.0f;
     }
@@ -226,6 +219,35 @@ void processMovement() {
         myCamera.move(gps::MOVE_RIGHT, cameraSpeed);
     }
 
+    //light
+
+    if (pressedKeys[GLFW_KEY_J]) {
+        lightAngle -= 1.0f;
+    }
+
+    if (pressedKeys[GLFW_KEY_L]) {
+        lightAngle += 1.0f;
+    }
+
+    if (pressedKeys[GLFW_KEY_I]) {
+        if (mainLight.lightBrightness > 0.1f)
+            mainLight.lightBrightness -= 0.01f;
+    }
+
+    if (pressedKeys[GLFW_KEY_P]) {
+        if (mainLight.lightBrightness < 0.9f)
+            mainLight.lightBrightness += 0.01f;
+    }
+
+    if (pressedKeys[GLFW_KEY_8]) {
+        if (secondaryLight.lightBrightness > 0.1f)
+            secondaryLight.lightBrightness -= 0.01f;
+    }
+
+    if (pressedKeys[GLFW_KEY_0]) {
+        if (secondaryLight.lightBrightness < 0.9f)
+            secondaryLight.lightBrightness += 0.01f;
+    }
 }
 
 void initOpenGLWindow() {
@@ -294,24 +316,24 @@ void initUniforms(gps::Shader shader) {
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
     //set the light direction (direction towards the light)
-    mainLight.lightDir = glm::vec3(0.0f, 10.0f, 1.0f);
+    mainLight.lightDir = glm::vec3(15.438160f, 16.868689f, -7.212670f);
     mainLight.lightRotation = glm::rotate(glm::mat4(1.0f), glm::radians(lightAngle), glm::vec3(0.0f, 1.0f, 0.0f));
     mainLight.lightDirLoc = glGetUniformLocation(shader.shaderProgram, "mainLightDir");
     glUniform3fv(mainLight.lightDirLoc, 1, glm::value_ptr(glm::inverseTranspose(glm::mat3(view * mainLight.lightRotation)) * mainLight.lightDir));
-    
+      
     //set the light direction (direction towards the light)
-    secondaryLight.lightDir = glm::vec3(10.0f, 1000.0f, 1.0f);
+    secondaryLight.lightDir = glm::vec3(-10.688848f, 3.203635f, 0.789529f);
     secondaryLight.lightRotation = glm::rotate(glm::mat4(1.0f), glm::radians(lightAngle), glm::vec3(0.0f, 1.0f, 0.0f));
     secondaryLight.lightDirLoc = glGetUniformLocation(shader.shaderProgram, "secondaryLightDir");
     glUniform3fv(secondaryLight.lightDirLoc, 1, glm::value_ptr(glm::inverseTranspose(glm::mat3(view * secondaryLight.lightRotation)) * secondaryLight.lightDir));
 
     //set light color
-    mainLight.lightColor = glm::vec3(1.0f, 0.0f, 0.0f); //white light
+    mainLight.lightColor = glm::vec3(1.0f * mainLight.lightBrightness, 1.0f * mainLight.lightBrightness, 1.0f * mainLight.lightBrightness); //white light
     mainLight.lightColorLoc = glGetUniformLocation(shader.shaderProgram, "mainLightColor");
     glUniform3fv(mainLight.lightColorLoc, 1, glm::value_ptr(mainLight.lightColor));
 
     //set light color
-    secondaryLight.lightColor = glm::vec3(0.0f, 0.0f, 1.0f); //white light
+    secondaryLight.lightColor = glm::vec3(0.91f * secondaryLight.lightBrightness, 0.84f * secondaryLight.lightBrightness, 0.42f * secondaryLight.lightBrightness); //white light
     secondaryLight.lightColorLoc = glGetUniformLocation(shader.shaderProgram, "secondaryLightColor");
     glUniform3fv(secondaryLight.lightColorLoc, 1, glm::value_ptr(secondaryLight.lightColor));
 
@@ -448,6 +470,12 @@ void renderScene() {
         mainLight.lightRotation = glm::rotate(glm::mat4(1.0f), glm::radians(lightAngle), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniform3fv(mainLight.lightDirLoc, 1, glm::value_ptr(glm::inverseTranspose(glm::mat3(view * mainLight.lightRotation)) * mainLight.lightDir));
 
+        mainLight.lightColor = glm::vec3(1.0f * mainLight.lightBrightness, 1.0f * mainLight.lightBrightness, 1.0f * mainLight.lightBrightness); //white light
+        glUniform3fv(mainLight.lightColorLoc, 1, glm::value_ptr(mainLight.lightColor));
+
+        secondaryLight.lightColor = glm::vec3(0.91f * secondaryLight.lightBrightness, 0.84f * secondaryLight.lightBrightness, 0.42f * secondaryLight.lightBrightness); //white light
+        glUniform3fv(secondaryLight.lightColorLoc, 1, glm::value_ptr(secondaryLight.lightColor));
+
         //bind the shadow map
         glActiveTexture(GL_TEXTURE3);
         glBindTexture(GL_TEXTURE_2D, depthMapTexture);
@@ -487,6 +515,11 @@ void cleanup() {
     //cleanup code for your own data
 }
 
+void initLightProps() {
+    mainLight.lightBrightness = 1.0f;
+    secondaryLight.lightBrightness = 1.0f;
+}
+
 int main(int argc, const char * argv[]) {
 
     try {
@@ -496,7 +529,9 @@ int main(int argc, const char * argv[]) {
         return EXIT_FAILURE;
     }
 
+
     initOpenGLState();
+    initLightProps();
     initSkyBox();
 	initModels();
 	initShaders();
