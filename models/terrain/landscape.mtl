@@ -74,16 +74,6 @@ Ni 1.450000
 d 1.000000
 illum 1
 
-newmtl Chrome.001
-Ns 20.000006
-Ka 1.000000 1.000000 1.000000
-Kd 0.270588 0.270588 0.270588
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 1
-
 newmtl DIS_CEPHE_
 Ka 1.000000 1.000000 1.000000
 Ks 0.092727 0.092727 0.092727
@@ -135,29 +125,7 @@ map_Kd Metal035_2K_Color.jpg
 map_Ns Metal035_2K_Roughness.jpg
 map_Bump Metal035_2K_NormalDX.jpg
 
-newmtl Gold_(Polished).001
-Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 1
-map_Kd Metal035_2K_Color.jpg
-map_Ns Metal035_2K_Roughness.jpg
-map_Bump Metal035_2K_NormalDX.jpg
-
 newmtl Gold_(satin)
-Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 1
-map_Kd Metal035_2K_Color.jpg
-map_Ns Metal035_2K_Roughness.jpg
-map_Bump Metal035_2K_NormalDX.jpg
-
-newmtl Gold_(satin).001
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
@@ -248,17 +216,6 @@ illum 2
 map_Kd Tiles090_4K_Color.jpg
 map_Ns Tiles090_4K_Roughness.jpg
 
-newmtl PLASTIC
-Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 1
-map_Kd Plastic006_2K_Color.jpg
-map_Ns Plastic006_2K_Roughness.jpg
-map_Bump Plastic006_2K_NormalDX.jpg
-
 newmtl PLASTIC.001
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -291,16 +248,6 @@ d 1.000000
 illum 2
 
 newmtl Stell
-Ns 20.000006
-Ka 1.000000 1.000000 1.000000
-Kd 0.329412 0.329412 0.329412
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 1
-
-newmtl Stell.001
 Ns 20.000006
 Ka 1.000000 1.000000 1.000000
 Kd 0.329412 0.329412 0.329412
