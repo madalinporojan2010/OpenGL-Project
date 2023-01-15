@@ -266,6 +266,8 @@ void processMovement() {
             frontDoorRotationAngle -= 1.0f;
     }
 
+    //animations
+
     if (pressedKeys[GLFW_KEY_Z]) {
         // reset door animation
         beginFrontDoorAnimation = false;
@@ -274,6 +276,21 @@ void processMovement() {
     if (pressedKeys[GLFW_KEY_C]) {
         // begin door animation
         beginFrontDoorAnimation = true;
+    }
+
+    // type of render
+
+    if (pressedKeys[GLFW_KEY_R]) {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // solid mode
+    }
+    if (pressedKeys[GLFW_KEY_T]) {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // Wireframe mode
+    }
+    if (pressedKeys[GLFW_KEY_Y]) {
+        glShadeModel(GL_FLAT); // polygonal shade mode
+    }
+    if (pressedKeys[GLFW_KEY_F]) {
+        glShadeModel(GL_SMOOTH); // smooth shade mode
     }
 }
 
@@ -361,7 +378,7 @@ void initUniforms(gps::Shader shader) {
     glUniform3fv(mainLight.lightColorLoc, 1, glm::value_ptr(mainLight.lightColor));
 
     //set light color
-    secondaryLight.lightColor = glm::vec3(0.91f * secondaryLight.lightBrightness, 0.84f * secondaryLight.lightBrightness, 0.42f * secondaryLight.lightBrightness); //white light
+    secondaryLight.lightColor = glm::vec3(0.0f * secondaryLight.lightBrightness, 0.0f * secondaryLight.lightBrightness, 1.0f * secondaryLight.lightBrightness); //white light
     secondaryLight.lightColorLoc = glGetUniformLocation(shader.shaderProgram, "secondaryLightColor");
     glUniform3fv(secondaryLight.lightColorLoc, 1, glm::value_ptr(secondaryLight.lightColor));
 
@@ -470,23 +487,6 @@ void renderFrontDoor(gps::Shader shader, bool depthPass) {
     frontDoor.Draw(shader);
 }
 
-//void renderNanoSuit(gps::Shader shader, bool depthPass) {
-//
-//    shader.useShaderProgram();
-//
-//    model = glm::rotate(glm::mat4(1.0f), glm::radians(angleY), glm::vec3(0.0f, 1.0f, 0.0f));
-//    glUniformMatrix4fv(glGetUniformLocation(shader.shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
-//
-//    // do not send the normal matrix if we are rendering in the depth map
-//    if (!depthPass) {
-//        normalMatrix = glm::mat3(glm::inverseTranspose(view * model));
-//        glUniformMatrix3fv(normalMatrixLoc, 1, GL_FALSE, glm::value_ptr(normalMatrix));
-//    }
-//
-//    nanoSuit.Draw(shader);
-//
-//}
-
 void renderScene() {
 
     depthMapShader.useShaderProgram();
@@ -548,7 +548,7 @@ void renderScene() {
         mainLight.lightColor = glm::vec3(1.0f * mainLight.lightBrightness, 1.0f * mainLight.lightBrightness, 1.0f * mainLight.lightBrightness); //white light
         glUniform3fv(mainLight.lightColorLoc, 1, glm::value_ptr(mainLight.lightColor));
 
-        secondaryLight.lightColor = glm::vec3(0.91f * secondaryLight.lightBrightness, 0.84f * secondaryLight.lightBrightness, 0.42f * secondaryLight.lightBrightness); //white light
+        secondaryLight.lightColor = glm::vec3(0.0f * secondaryLight.lightBrightness, 0.0f * secondaryLight.lightBrightness, 1.0f * secondaryLight.lightBrightness); //white light
         glUniform3fv(secondaryLight.lightColorLoc, 1, glm::value_ptr(secondaryLight.lightColor));
 
         //bind the shadow map

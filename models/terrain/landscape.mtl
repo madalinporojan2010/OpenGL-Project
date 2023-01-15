@@ -86,7 +86,7 @@ map_Ns Metal027_2K_Roughness.jpg
 
 newmtl DIS_CEPHE_2
 Ka 1.000000 1.000000 1.000000
-Ks 0.092727 0.092727 0.092727
+Ks 0.656830 0.656830 0.656830
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
@@ -317,35 +317,25 @@ d 1.000000
 illum 2
 map_Kd bark_willow_diff_4k.jpg
 
-newmtl blinn2
-Ns 12.457310
-Ka 0.500000 0.500000 0.500000
-Ks 1.000000 1.000000 1.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 3
-map_Kd boards_wooden_surface_background_texture_50684_1920x1200.jpg
-
 newmtl boat-ledges-material
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
 map_Kd wood3.jpg
+map_Ks Bump_SPECULAR.jpg
 
 newmtl boat-main-material
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
 map_Kd wood1.jpg
+map_Ks wood1_SPEC.jpg
 
 newmtl ground-material
 Ns 250.000000
@@ -380,7 +370,7 @@ map_Kd lamp-texture.png
 newmtl lighthouse-stone
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
+Ks 0.502564 0.502564 0.502564
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000

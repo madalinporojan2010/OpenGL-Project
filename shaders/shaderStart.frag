@@ -47,7 +47,7 @@ float computeShadow(LightStruct light) {
 }
 
 float computeFog() {
-	float fogDensity = 0.02f;
+	float fogDensity = 0.05f;
 	float fragmentDistance = length(fPosEye);
 	float fogFactor = exp(-pow(fragmentDistance * fogDensity, 2));
 	
