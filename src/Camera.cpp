@@ -10,13 +10,12 @@ namespace gps {
         
         this->originalCameraFront = glm::normalize(this->cameraTarget - this->cameraPosition);
         this->originalCameraUp = cameraUp;
-
         this->rotate(0.0f , -90.0f);
     }
 
     //return the view matrix, using the glm::lookAt() function
-    glm::mat4 Camera::getViewMatrix() {
-        return glm::lookAt(cameraPosition, this->cameraPosition + this->cameraFrontDirection, cameraUpDirection);
+    glm::mat4 Camera::getViewMatrix() {        
+        return glm::lookAt(this->cameraPosition, this->cameraPosition + this->cameraFrontDirection, cameraUpDirection);
     }
 
     //update the camera internal parameters following a camera move event

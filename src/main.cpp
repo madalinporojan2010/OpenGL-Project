@@ -67,6 +67,10 @@ gps::Camera myCamera(
 GLfloat cameraSpeed = 0.05f;
 
 GLboolean pressedKeys[1024];
+//auto camera
+float cameraAngle = 0.0f;
+float cameraRadius = 10.0f;
+bool beginCameraAnimation = false;
 
 // models
 gps::Model3D screenQuad;
@@ -291,6 +295,15 @@ void processMovement() {
     }
     if (pressedKeys[GLFW_KEY_F]) {
         glShadeModel(GL_SMOOTH); // smooth shade mode
+    }
+
+    // camera animation
+    if (pressedKeys[GLFW_KEY_5]) {
+        beginCameraAnimation = false;
+        cameraAngle = 0.0f;
+    }
+    if (pressedKeys[GLFW_KEY_6]) {
+        beginCameraAnimation = true;
     }
 }
 
@@ -539,8 +552,21 @@ void renderScene() {
 
         myCustomShader.useShaderProgram();
 
-        view = myCamera.getViewMatrix();
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        if (!beginCameraAnimation) {
+            view = myCamera.getViewMatrix();
+            glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        }
+        else {
+            // Update angle
+            cameraAngle += 0.01f;
+
+            // Calculate camera's position
+            myCamera.cameraPosition.x = cameraRadius * cos(cameraAngle);
+            myCamera.cameraPosition.z = cameraRadius * sin(cameraAngle);
+
+            view = glm::lookAt(myCamera.cameraPosition, glm::vec3(-5.144793f, 9.219655f, 2.913069f), glm::vec3(0.0f, 1.0f, 0.0f));
+            glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        }
 
         mainLight.lightRotation = glm::rotate(glm::mat4(1.0f), glm::radians(lightAngle), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniform3fv(mainLight.lightDirLoc, 1, glm::value_ptr(glm::inverseTranspose(glm::mat3(view * mainLight.lightRotation)) * mainLight.lightDir));
@@ -601,6 +627,7 @@ void initLightProps() {
     secondaryLight.lightBrightness = 1.0f;
 }
 
+
 int main(int argc, const char * argv[]) {
 
     try {
@@ -638,7 +665,6 @@ int main(int argc, const char * argv[]) {
 		glfwPollEvents();
 		glfwSwapBuffers(myWindow.getWindow());
 
-    
         glCheckError();
 
 
