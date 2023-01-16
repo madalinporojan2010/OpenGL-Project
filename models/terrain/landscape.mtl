@@ -1,0 +1,408 @@
+# Blender 3.4.0 MTL File: 'best.blend'
+# www.blender.org
+
+newmtl ALTIN_METAL
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd Metal011_2K_Color.jpg
+map_Ns Metal011_2K_Roughness.jpg
+map_Bump Metal011_2K_NormalDX.jpg
+
+newmtl BALKON_ZEMIN
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Tiles045_4K_Color.jpg
+map_Ns Tiles045_4K_Roughness.jpg
+
+newmtl BLACK_METAL
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Metal027_2K_Color.jpg
+map_Ns Metal027_2K_Roughness.jpg
+
+newmtl BLACK_METAL.001
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd Metal029_2K_Color.jpg
+map_Ns Metal029_2K_Roughness.jpg
+map_Bump Metal029_2K_NormalDX.jpg
+
+newmtl BLACK_METAL.002
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd Metal029_2K_Color.jpg
+map_Ns Metal029_2K_Roughness.jpg
+map_Bump Metal029_2K_NormalDX.jpg
+
+newmtl CIMEN
+Ka 1.000000 1.000000 1.000000
+Ks 0.092727 0.092727 0.092727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Grass004_4K_Color.jpg
+map_Ns Grass004_4K_Roughness.jpg
+
+newmtl Chrome
+Ns 20.000006
+Ka 1.000000 1.000000 1.000000
+Kd 0.270588 0.270588 0.270588
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+
+newmtl DIS_CEPHE_
+Ka 1.000000 1.000000 1.000000
+Ks 0.092727 0.092727 0.092727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Metal027_2K_Color.jpg
+map_Ns Metal027_2K_Roughness.jpg
+
+newmtl DIS_CEPHE_2
+Ka 1.000000 1.000000 1.000000
+Ks 0.656830 0.656830 0.656830
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Metal027_2K_Color.jpg
+map_Ns Metal027_2K_Roughness.jpg
+
+newmtl Door_material
+Ka 1.000000 1.000000 1.000000
+Ks 0.092727 0.092727 0.092727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Wood15_col.jpg
+map_Ns Wood15_rgh.jpg
+
+newmtl Gold_(Polished)
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd Metal035_2K_Color.jpg
+map_Ns Metal035_2K_Roughness.jpg
+map_Bump Metal035_2K_NormalDX.jpg
+
+newmtl Gold_(satin)
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd Metal035_2K_Color.jpg
+map_Ns Metal035_2K_Roughness.jpg
+map_Bump Metal035_2K_NormalDX.jpg
+
+newmtl Handle_material
+Ns 360.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.578000 0.555000 0.736000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl MERMER.001
+Ka 1.000000 1.000000 1.000000
+Ks 0.056364 0.056364 0.056364
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Marble002_2K_Color.jpg
+map_Ns Marble002_2K_Roughness.jpg
+
+newmtl METAL_3
+Ka 1.000000 1.000000 1.000000
+Ks 0.092727 0.092727 0.092727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Chainmail001_2K_Color.jpg
+map_Ns Chainmail001_2K_Roughness.jpg
+
+newmtl METAL_4
+Ka 1.000000 1.000000 1.000000
+Ks 0.092727 0.092727 0.092727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Chainmail001_2K_Color.jpg
+map_Ns Chainmail001_2K_Roughness.jpg
+
+newmtl Material.001
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd WoodFloor010_4K_Color.jpg
+map_Ns WoodFloor010_4K_Roughness.jpg
+
+newmtl Material.002
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd WoodFloor010_4K_Color.jpg
+map_Ns WoodFloor010_4K_Roughness.jpg
+
+newmtl PARK
+Ka 1.000000 1.000000 1.000000
+Ks 0.056364 0.056364 0.056364
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Tiles090_4K_Color.jpg
+map_Ns Tiles090_4K_Roughness.jpg
+
+newmtl PLASTIC.001
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd Plastic006_2K_Color.jpg
+map_Ns Plastic006_2K_Roughness.jpg
+map_Bump Plastic006_2K_NormalDX.jpg
+
+newmtl PLASTIC_BLACK_METAL
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Plastic006_2K_Color.jpg
+map_Ns Plastic006_2K_Roughness.jpg
+
+newmtl Stell
+Ns 20.000006
+Ka 1.000000 1.000000 1.000000
+Kd 0.329412 0.329412 0.329412
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+
+newmtl TAS
+Ka 1.000000 1.000000 1.000000
+Ks 0.092727 0.092727 0.092727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Gravel023_2K_Color.jpg
+map_Ns Gravel023_2K_Roughness.jpg
+
+newmtl TAS_DUVAR_3
+Ka 1.000000 1.000000 1.000000
+Ks 0.056364 0.056364 0.056364
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Tiles090_4K_Color.jpg
+map_Ns Tiles090_4K_Roughness.jpg
+
+newmtl WOOD_3
+Ka 1.000000 1.000000 1.000000
+Ks 0.092727 0.092727 0.092727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd WoodFloor004_4K_Color.jpg
+map_Ns WoodFloor004_4K_Roughness.jpg
+
+newmtl WOOD_4
+Ka 1.000000 1.000000 1.000000
+Ks 0.092727 0.092727 0.092727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd WoodFloor004_4K_Color.jpg
+map_Ns WoodFloor004_4K_Roughness.jpg
+
+newmtl WOOD_5
+Ka 1.000000 1.000000 1.000000
+Ks 0.056364 0.056364 0.056364
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd WoodFloor004_4K_Color.jpg
+map_Ns WoodFloor004_4K_Roughness.jpg
+
+newmtl WOOD_DIS_2
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd WoodFloor010_4K_Color.jpg
+map_Ns WoodFloor010_4K_Roughness.jpg
+
+newmtl ZEMIN_1
+Ka 1.000000 1.000000 1.000000
+Ks 0.056364 0.056364 0.056364
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd WoodFloor07_col.jpg
+map_Ns WoodFloor07_rgh.jpg
+
+newmtl ZEMIN_2
+Ka 1.000000 1.000000 1.000000
+Ks 0.056364 0.056364 0.056364
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd WoodFloor07_col.jpg
+map_Ns WoodFloor07_rgh.jpg
+
+newmtl bark-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd bark_willow_diff_4k.jpg
+
+newmtl boat-ledges-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd wood3.jpg
+map_Ks Bump_SPECULAR.jpg
+
+newmtl boat-main-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd wood1.jpg
+map_Ks wood1_SPEC.jpg
+
+newmtl ground-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd snow_03_diff_4k.jpg
+
+newmtl lamp-bulb-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lamp-bulb-texture.png
+
+newmtl lamp-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lamp-texture.png
+
+newmtl lighthouse-stone
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.502564 0.502564 0.502564
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd stone_tiles_diff_4k.jpg
+
+newmtl lighthouse-top-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lighthouse-top.png
+
+newmtl pines-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd pines2.jpg
+
+newmtl water-material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd water_texture.png

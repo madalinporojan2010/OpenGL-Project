@@ -33,3 +33,11 @@
 
 # Visual studio
 .vs
+
+# Debug
+x64
+
+# Models
+models
+skybox
+blender
