@@ -14,13 +14,14 @@ namespace gps {
     }
 
     //return the view matrix, using the glm::lookAt() function
-    glm::mat4 Camera::getViewMatrix() {        
+    glm::mat4 Camera::getViewMatrix() {
+        std::printf("Target Coords: %ff, %ff, %ff\n", (this->cameraPosition + this->cameraFrontDirection).x, (this->cameraPosition + this->cameraFrontDirection).y, (this->cameraPosition + this->cameraFrontDirection).z);
         return glm::lookAt(this->cameraPosition, this->cameraPosition + this->cameraFrontDirection, cameraUpDirection);
     }
 
     //update the camera internal parameters following a camera move event
     void Camera::move(MOVE_DIRECTION direction, float speed) {
-        std::printf("Coords: %f %f %f\n", this->cameraPosition.x, this->cameraPosition.y, this->cameraPosition.z);
+        std::printf("Position Coords: %ff, %ff, %ff\n", this->cameraPosition.x, this->cameraPosition.y, this->cameraPosition.z);
         switch (direction) {
             case MOVE_FORWARD:
                 this->cameraPosition -= speed * (-this->cameraFrontDirection);

@@ -500,6 +500,64 @@ void renderFrontDoor(gps::Shader shader, bool depthPass) {
     frontDoor.Draw(shader);
 }
 
+
+glm::vec3 P0(-21.979586f, 4.031127f, -4.629179f);
+glm::vec3 P1(-13.868981f, 3.258924f, -1.217223f);
+glm::vec3 P2(-11.700786f, 2.799728f, 0.451809f);
+glm::vec3 P3(-0.127710f, 4.919400f, 9.089221f);
+glm::vec3 P4(-1.076682f, 6.379920f, 13.895396f);
+glm::vec3 P5(15.770725f, 6.901012f, 4.650489f);
+glm::vec3 P6(18.986069f, 8.740207f, -18.393059f);
+glm::vec3 P7(7.216824f, 6.534041f, -23.205952f);
+glm::vec3 P8(-6.591795f, 6.500103f, -15.904457f);
+glm::vec3 P9(-22.149868f, 5.723304f, -15.828244f);
+glm::vec3 P10(-35.216900f, 5.302893f, -12.221725f);
+glm::vec3 P11(-34.724472f, 5.880974f, 9.490473f);
+glm::vec3 P12(-21.979586f, 4.031127f, -4.629179f);
+
+std::vector<glm::vec3> bezierPositionPoints;
+
+float t = 0.0f;
+float speed = 0.0006f;
+
+void initControlPoints() {
+    bezierPositionPoints.push_back(P0);
+    bezierPositionPoints.push_back(P1);
+    bezierPositionPoints.push_back(P2);
+    bezierPositionPoints.push_back(P3);
+    bezierPositionPoints.push_back(P4);
+    bezierPositionPoints.push_back(P5);
+    bezierPositionPoints.push_back(P6);
+    bezierPositionPoints.push_back(P7);
+    bezierPositionPoints.push_back(P8);
+    bezierPositionPoints.push_back(P9);
+    bezierPositionPoints.push_back(P10);
+    bezierPositionPoints.push_back(P11);
+    bezierPositionPoints.push_back(P12);
+}
+
+float binomialCoefficient(int n, int k) {
+    float res = 1;
+    if (k > n - k)
+        k = n - k;
+    for (int i = 0; i < k; ++i) {
+        res *= (n - i);
+        res /= (i + 1);
+    }
+    return res;
+}
+
+glm::vec3 calculateBezierCurve(std::vector<glm::vec3> controlPoints, float t) {
+    int n = controlPoints.size() - 1;
+    glm::vec3 position(0);
+    for (int i = 0; i <= n; i++) {
+        float binom = binomialCoefficient(n, i);
+        float bernstein = binom * pow(1 - t, n - i) * pow(t, i);
+        position += bernstein * controlPoints[i];
+    }
+    return position;
+}
+
 void renderScene() {
 
     depthMapShader.useShaderProgram();
@@ -558,13 +616,13 @@ void renderScene() {
         }
         else {
             // Update angle
-            cameraAngle += 0.01f;
+            t += speed;
+            t = fmod(t, 1.0f);
 
             // Calculate camera's position
-            myCamera.cameraPosition.x = cameraRadius * cos(cameraAngle);
-            myCamera.cameraPosition.z = cameraRadius * sin(cameraAngle);
+            myCamera.cameraPosition = calculateBezierCurve(bezierPositionPoints, t);
 
-            view = glm::lookAt(myCamera.cameraPosition, glm::vec3(-5.144793f, 9.219655f, 2.913069f), glm::vec3(0.0f, 1.0f, 0.0f));
+            view = glm::lookAt(myCamera.cameraPosition, glm::vec3(-5.280864f, 3.254189f, 2.045167f), glm::vec3(0.0f, 1.0f, 0.0f));
             glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
         }
 
@@ -637,7 +695,7 @@ int main(int argc, const char * argv[]) {
         return EXIT_FAILURE;
     }
 
-
+    initControlPoints();
     initOpenGLState();
     initLightProps();
     initSkyBox();
@@ -675,7 +733,7 @@ int main(int argc, const char * argv[]) {
 
         dSum += dFrameTime;
         if (step >= 20) {
-            std::cout << step / dSum << std::endl;
+            //std::cout << step / dSum << std::endl;
             step = 0;
             dSum = 0.0f;
         }
